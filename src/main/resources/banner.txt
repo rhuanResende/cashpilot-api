@@ -1,3 +1,10 @@
+--------------------------------------------------
+  Aplicação   : ${spring.application.name}
+  Ambiente    : ${spring.profiles.active:default}
+  Porta HTTP  : ${server.port:8080}
+  Versão      : ${spring.application.version}
+  Spring Boot : ${spring-boot.version}
+--------------------------------------------------
  _____           _    ______ _ _       _           ___  ______ _____
 /  __ \         | |   | ___ (_) |     | |         / _ \ | ___ \_   _|
 | /  \/ __ _ ___| |__ | |_/ /_| | ___ | |_ ______/ /_\ \| |_/ / | |

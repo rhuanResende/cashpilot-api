@@ -1,3 +1,24 @@
 spring:
   application:
     name: cashpilot-api
+    version: "@project.version@"
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cashpilot_dev
+    username: cashpilot_dev
+    password: ${DB_PASSWORD}
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true
+    locations:
+      - classpath:db/migration
+    validate-on-migrate: true
+    clean-disabled: true
+
+server:
+  port: ${SERVER_PORT:8080}
