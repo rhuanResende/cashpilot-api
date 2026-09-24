@@ -1,4 +1,4 @@
-package com.desenvolvimento.logica.cashpilot_api.shared.entity;
+package com.desenvolvimento.logica.cashpilot_api.shared.model;
 
 import jakarta.persistence.*;
 

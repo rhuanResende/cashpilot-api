@@ -1,7 +1,7 @@
 package com.desenvolvimento.logica.cashpilot_api.shared.mapper;
 
 import com.desenvolvimento.logica.cashpilot_api.shared.dto.AddressRequest;
-import com.desenvolvimento.logica.cashpilot_api.shared.entity.Address;
+import com.desenvolvimento.logica.cashpilot_api.shared.model.Address;
 
 public final class AddressMapper {
 
@@ -22,6 +22,23 @@ public final class AddressMapper {
                 request.city(),
                 request.state(),
                 request.countryCode()
+        );
+    }
+
+    public static AddressRequest toRequest(Address address) {
+        if (address == null) {
+            return null;
+        }
+
+        return new AddressRequest(
+                address.getPostalCode(),
+                address.getStreet(),
+                address.getNumber(),
+                address.getComplement(),
+                address.getNeighborhood(),
+                address.getCity(),
+                address.getState(),
+                address.getCountryCode()
         );
     }
 }

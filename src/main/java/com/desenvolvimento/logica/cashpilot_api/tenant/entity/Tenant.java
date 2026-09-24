@@ -1,7 +1,7 @@
 package com.desenvolvimento.logica.cashpilot_api.tenant.entity;
 
-import com.desenvolvimento.logica.cashpilot_api.shared.entity.Address;
-import com.desenvolvimento.logica.cashpilot_api.shared.entity.BaseEntity;
+import com.desenvolvimento.logica.cashpilot_api.shared.model.Address;
+import com.desenvolvimento.logica.cashpilot_api.shared.model.BaseEntity;
 import jakarta.persistence.*;
 
 @Entity

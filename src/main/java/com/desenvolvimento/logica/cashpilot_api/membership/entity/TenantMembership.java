@@ -1,6 +1,6 @@
 package com.desenvolvimento.logica.cashpilot_api.membership.entity;
 
-import com.desenvolvimento.logica.cashpilot_api.shared.entity.BaseEntity;
+import com.desenvolvimento.logica.cashpilot_api.shared.model.BaseEntity;
 import com.desenvolvimento.logica.cashpilot_api.tenant.entity.Tenant;
 import com.desenvolvimento.logica.cashpilot_api.user.entity.User;
 import jakarta.persistence.*;

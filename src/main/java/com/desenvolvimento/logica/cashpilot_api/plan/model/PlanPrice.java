@@ -1,6 +1,6 @@
 package com.desenvolvimento.logica.cashpilot_api.plan.model;
 
-import com.desenvolvimento.logica.cashpilot_api.shared.entity.BaseEntity;
+import com.desenvolvimento.logica.cashpilot_api.shared.model.BaseEntity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
