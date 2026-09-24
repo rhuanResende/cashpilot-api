@@ -10,7 +10,9 @@ import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import java.util.UUID;
@@ -23,6 +25,9 @@ import static org.mockito.Mockito.doAnswer;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ActiveProfiles("test")
 public class RegistrationRollbackIntegrationTest {
+
+    @MockitoBean
+    private JavaMailSender mailSender;
 
     @Autowired
     private RegistrationService registrationService;

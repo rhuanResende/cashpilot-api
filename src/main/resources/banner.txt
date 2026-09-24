@@ -1,6 +1,6 @@
 --------------------------------------------------
   Aplicação   : ${spring.application.name}
-  Ambiente    : ${spring.profiles.active:default}
+  Ambiente    : ${app.environment}
   Porta HTTP  : ${server.port:8080}
   Versão      : ${spring.application.version}
   Spring Boot : ${spring-boot.version}

@@ -111,6 +111,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return problem;
     }
 
+    @ExceptionHandler(InvalidEmailVerificationTokenException.class)
+    public ProblemDetail handleInvalidEmailVerificationToken(
+            InvalidEmailVerificationTokenException exception) {
+
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_REQUEST,
+                "O link de confirmação é inválido ou expirou."
+        );
+        problem.setTitle("Falha na confirmação de e-mail");
+
+        return problem;
+    }
+
     private ProblemDetail validationProblem(List<FieldViolation> errors) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(
                 HttpStatus.BAD_REQUEST,

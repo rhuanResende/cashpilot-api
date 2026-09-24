@@ -65,8 +65,16 @@ public class User extends BaseEntity {
     }
 
     public void markEmailVerified() {
+        markEmailVerified(Instant.now());
+    }
+
+    public void markEmailVerified(Instant instant) {
+        java.util.Objects.requireNonNull(
+                instant, "O instante da confirmação é obrigatório."
+        );
+
         if (this.emailVerifiedAt == null) {
-            this.emailVerifiedAt = Instant.now();
+            this.emailVerifiedAt = instant;
         }
     }
 

@@ -16,8 +16,10 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.temporal.ChronoUnit;
@@ -27,6 +29,9 @@ import java.util.UUID;
 @ActiveProfiles("test")
 @Transactional
 public class RegistrationServiceIntegrationTest {
+
+    @MockitoBean
+    private JavaMailSender mailSender;
 
     @Autowired
     private RegistrationService registrationService;

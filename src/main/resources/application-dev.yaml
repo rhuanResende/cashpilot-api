@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cashpilot_dev
+    username: cashpilot_dev
+    password: ${DB_PASSWORD}
+
+  mail:
+    host: localhost
+    port: 1025
+    default-encoding: UTF-8
+    properties:
+      "[mail.smtp.auth]": false
+      "[mail.smtp.starttls.enable]": false
+      "[mail.smtp.connectiontimeout]": 5000
+      "[mail.smtp.timeout]": 5000
+      "[mail.smtp.writetimeout]": 5000
+
+app:
+  environment: dev
+  mail:
+    from: no-reply@cashpilot.test
+    verification-url: http://localhost:5173/confirm-email
