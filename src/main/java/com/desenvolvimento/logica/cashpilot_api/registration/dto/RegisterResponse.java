@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public record RegisterResponse(
         UUID userId,
-        UUID tenantId
+        UUID tenantId,
+        UUID planId
 ) {
 }

@@ -5,8 +5,9 @@ import com.desenvolvimento.logica.cashpilot_api.membership.entity.MembershipStat
 import com.desenvolvimento.logica.cashpilot_api.membership.repository.TenantMembershipRepository;
 import com.desenvolvimento.logica.cashpilot_api.registration.dto.RegisterRequest;
 import com.desenvolvimento.logica.cashpilot_api.registration.service.RegistrationService;
+import com.desenvolvimento.logica.cashpilot_api.subscription.model.SubscriptionStatus;
+import com.desenvolvimento.logica.cashpilot_api.subscription.repository.SubscriptionRepository;
 import com.desenvolvimento.logica.cashpilot_api.tenant.repository.TenantRepository;
-import com.desenvolvimento.logica.cashpilot_api.trial.repository.TenantTrialRepository;
 import com.desenvolvimento.logica.cashpilot_api.user.entity.PlatformRole;
 import com.desenvolvimento.logica.cashpilot_api.user.entity.UserStatus;
 import com.desenvolvimento.logica.cashpilot_api.user.repository.UserRepository;
@@ -40,7 +41,7 @@ public class RegistrationServiceIntegrationTest {
     private TenantMembershipRepository membershipRepository;
 
     @Autowired
-    private TenantTrialRepository trialRepository;
+    private SubscriptionRepository subscriptionRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -97,14 +98,36 @@ public class RegistrationServiceIntegrationTest {
                 MembershipStatus.ACTIVE
         )).isEqualTo(1L);
 
-        var trial = trialRepository.findByTenant_Id(response.tenantId())
+        var subscription = subscriptionRepository
+                .findByTenant_Id(response.tenantId())
                 .orElseThrow();
 
-        Assertions.assertThat(trial.getEndsAt())
-                .isEqualTo(trial.getStartsAt().plus(14, ChronoUnit.DAYS));
+        Assertions.assertThat(subscription.getStatus())
+                .isEqualTo(SubscriptionStatus.TRIALING);
 
-        Assertions.assertThat(trial.isActiveAt(trial.getStartsAt())).isTrue();
-        Assertions.assertThat(trial.isActiveAt(trial.getStartsAt().minusSeconds(1))).isFalse();
-        Assertions.assertThat(trial.isActiveAt(trial.getEndsAt())).isFalse();
+        Assertions.assertThat(subscription.getPlan().getCode()).isEqualTo("TRIAL");
+        Assertions.assertThat(subscription.getPlan().getMaxUsers()).isEqualTo(1);
+        Assertions.assertThat(subscription.getPlan().getMaxProducts()).isEqualTo(10);
+        Assertions.assertThat(subscription.getPlanPrice()).isNull();
+
+        Assertions.assertThat(subscription.getTrialEndsAt())
+                .isEqualTo(
+                        subscription.getTrialStartsAt().plus(14, ChronoUnit.DAYS)
+                );
+
+        Assertions.assertThat(subscription.getCurrentPeriodStartsAt())
+                .isEqualTo(subscription.getTrialStartsAt());
+
+        Assertions.assertThat(subscription.getCurrentPeriodEndsAt())
+                .isEqualTo(subscription.getTrialEndsAt());
+
+        Assertions.assertThat(subscription.hasAccessAt(subscription.getTrialStartsAt()))
+                .isTrue();
+
+        Assertions.assertThat(subscription.hasAccessAt(subscription.getTrialEndsAt()))
+                .isFalse();
+
+        Assertions.assertThat(subscription.isCancelAtPeriodEnd()).isFalse();
+        Assertions.assertThat(subscription.getCancellationRequestedAt()).isNull();
     }
 }
