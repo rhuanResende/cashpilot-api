@@ -98,6 +98,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return problem;
     }
 
+    @ExceptionHandler(ForbiddenOperationException.class)
+    public ProblemDetail handleForbiddenOperation(
+            ForbiddenOperationException exception) {
+
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(
+                HttpStatus.FORBIDDEN,
+                "Você não tem permissão para realizar esta operação."
+        );
+        problem.setTitle("Acesso negado");
+
+        return problem;
+    }
+
     private ProblemDetail validationProblem(List<FieldViolation> errors) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(
                 HttpStatus.BAD_REQUEST,
