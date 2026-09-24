@@ -14,8 +14,12 @@ import com.desenvolvimento.logica.cashpilot_api.tenant.entity.Tenant;
 import com.desenvolvimento.logica.cashpilot_api.tenant.repository.TenantRepository;
 import com.desenvolvimento.logica.cashpilot_api.user.entity.User;
 import com.desenvolvimento.logica.cashpilot_api.user.repository.UserRepository;
+import com.desenvolvimento.logica.cashpilot_api.verification.dto.IssuedEmailVerification;
+import com.desenvolvimento.logica.cashpilot_api.verification.event.EmailVerificationRequestedEvent;
+import com.desenvolvimento.logica.cashpilot_api.verification.service.EmailVerificationService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +39,8 @@ public class RegistrationService {
     private final SubscriptionRepository subscriptionRepository;
     private final Clock clock;
     private final PasswordEncoder passwordEncoder;
+    private final EmailVerificationService emailVerificationService;
+    private final ApplicationEventPublisher eventPublisher;
 
     public RegistrationService(
             UserRepository userRepository,
@@ -43,7 +49,9 @@ public class RegistrationService {
             PlanRepository planRepository,
             SubscriptionRepository subscriptionRepository,
             Clock clock,
-            PasswordEncoder passwordEncoder
+            PasswordEncoder passwordEncoder,
+            EmailVerificationService emailVerificationService,
+            ApplicationEventPublisher eventPublisher
     ) {
         this.userRepository = userRepository;
         this.tenantRepository = tenantRepository;
@@ -52,6 +60,8 @@ public class RegistrationService {
         this.subscriptionRepository = subscriptionRepository;
         this.clock = clock;
         this.passwordEncoder = passwordEncoder;
+        this.emailVerificationService = emailVerificationService;
+        this.eventPublisher = eventPublisher;
     }
 
     @Transactional
@@ -96,6 +106,13 @@ public class RegistrationService {
                         trialPlan,
                         Instant.now(clock)
                 )
+        );
+
+        IssuedEmailVerification verification =
+                emailVerificationService.issue(user.getId());
+
+        eventPublisher.publishEvent(
+                new EmailVerificationRequestedEvent(verification)
         );
 
         return new RegisterResponse(

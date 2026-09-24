@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,5 +20,14 @@ public interface EmailVerificationTokenRepository extends JpaRepository<EmailVer
             """)
     Optional<EmailVerificationToken> findByTokenHashForUpdate(
             @Param("tokenHash") String tokenHash
+    );
+
+    @Query("""
+        SELECT MAX(token.createdAt)
+        FROM EmailVerificationToken token
+        WHERE token.user.id = :userId
+        """)
+    Optional<Instant> findLastIssuedAtByUserId(
+            @Param("userId") UUID userId
     );
 }
