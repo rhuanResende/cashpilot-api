@@ -20,8 +20,14 @@ spring:
     validate-on-migrate: true
     clean-disabled: true
 
+  data:
+    redis:
+      repositories:
+        enabled: false
+
 server:
   port: ${SERVER_PORT:8080}
+  forward-headers-strategy: none
 
 app:
   security:
@@ -34,3 +40,7 @@ app:
         max-failed-attempts: 5
         failure-window: 15m
         lock-duration: 15m
+      ip-rate-limit:
+        max-requests: 20
+        window: 1m
+        key-prefix: "cashpilot:${app.environment}:auth:login:ip"
