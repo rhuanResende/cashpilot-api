@@ -1,14 +1,14 @@
 package com.desenvolvimento.logica.cashpilot_api.tenant.service;
 
-import com.desenvolvimento.logica.cashpilot_api.membership.entity.MembershipRole;
-import com.desenvolvimento.logica.cashpilot_api.membership.entity.MembershipStatus;
+import com.desenvolvimento.logica.cashpilot_api.membership.model.MembershipRole;
+import com.desenvolvimento.logica.cashpilot_api.membership.model.MembershipStatus;
 import com.desenvolvimento.logica.cashpilot_api.membership.repository.TenantMembershipRepository;
 import com.desenvolvimento.logica.cashpilot_api.shared.exception.ForbiddenOperationException;
 import com.desenvolvimento.logica.cashpilot_api.shared.mapper.AddressMapper;
 import com.desenvolvimento.logica.cashpilot_api.tenant.dto.UpdateTenantProfileRequest;
-import com.desenvolvimento.logica.cashpilot_api.tenant.entity.Tenant;
-import com.desenvolvimento.logica.cashpilot_api.tenant.entity.TenantStatus;
-import com.desenvolvimento.logica.cashpilot_api.user.entity.UserStatus;
+import com.desenvolvimento.logica.cashpilot_api.tenant.model.Tenant;
+import com.desenvolvimento.logica.cashpilot_api.tenant.model.TenantStatus;
+import com.desenvolvimento.logica.cashpilot_api.user.model.UserStatus;
 import com.desenvolvimento.logica.cashpilot_api.user.repository.UserRepository;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;

@@ -1,7 +1,7 @@
 package com.desenvolvimento.logica.cashpilot_api.verification.model;
 
 import com.desenvolvimento.logica.cashpilot_api.shared.model.BaseEntity;
-import com.desenvolvimento.logica.cashpilot_api.user.entity.User;
+import com.desenvolvimento.logica.cashpilot_api.user.model.User;
 import jakarta.persistence.*;
 
 import java.time.Instant;

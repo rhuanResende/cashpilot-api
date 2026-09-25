@@ -2,9 +2,9 @@ package com.desenvolvimento.logica.cashpilot_api.user;
 
 import com.desenvolvimento.logica.cashpilot_api.shared.dto.AddressRequest;
 import com.desenvolvimento.logica.cashpilot_api.user.dto.UpdateUserProfileRequest;
-import com.desenvolvimento.logica.cashpilot_api.user.entity.PlatformRole;
-import com.desenvolvimento.logica.cashpilot_api.user.entity.User;
-import com.desenvolvimento.logica.cashpilot_api.user.entity.UserStatus;
+import com.desenvolvimento.logica.cashpilot_api.user.model.PlatformRole;
+import com.desenvolvimento.logica.cashpilot_api.user.model.User;
+import com.desenvolvimento.logica.cashpilot_api.user.model.UserStatus;
 import com.desenvolvimento.logica.cashpilot_api.user.repository.UserRepository;
 import com.desenvolvimento.logica.cashpilot_api.user.service.UserProfileService;
 import jakarta.persistence.EntityManager;

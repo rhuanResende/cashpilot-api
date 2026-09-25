@@ -1,7 +1,7 @@
 package com.desenvolvimento.logica.cashpilot_api.verification.service;
 
 import com.desenvolvimento.logica.cashpilot_api.shared.exception.InvalidEmailVerificationTokenException;
-import com.desenvolvimento.logica.cashpilot_api.user.entity.UserStatus;
+import com.desenvolvimento.logica.cashpilot_api.user.model.UserStatus;
 import com.desenvolvimento.logica.cashpilot_api.user.repository.UserRepository;
 import com.desenvolvimento.logica.cashpilot_api.verification.config.VerificationTokenGenerator;
 import com.desenvolvimento.logica.cashpilot_api.verification.dto.IssuedEmailVerification;

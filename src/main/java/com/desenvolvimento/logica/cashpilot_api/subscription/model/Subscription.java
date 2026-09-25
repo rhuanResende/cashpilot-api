@@ -3,7 +3,7 @@ package com.desenvolvimento.logica.cashpilot_api.subscription.model;
 import com.desenvolvimento.logica.cashpilot_api.plan.model.Plan;
 import com.desenvolvimento.logica.cashpilot_api.plan.model.PlanPrice;
 import com.desenvolvimento.logica.cashpilot_api.shared.model.BaseEntity;
-import com.desenvolvimento.logica.cashpilot_api.tenant.entity.Tenant;
+import com.desenvolvimento.logica.cashpilot_api.tenant.model.Tenant;
 import jakarta.persistence.*;
 
 import java.time.Instant;

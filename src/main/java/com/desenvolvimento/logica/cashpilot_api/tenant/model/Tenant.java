@@ -1,4 +1,4 @@
-package com.desenvolvimento.logica.cashpilot_api.tenant.entity;
+package com.desenvolvimento.logica.cashpilot_api.tenant.model;
 
 import com.desenvolvimento.logica.cashpilot_api.shared.model.Address;
 import com.desenvolvimento.logica.cashpilot_api.shared.model.BaseEntity;

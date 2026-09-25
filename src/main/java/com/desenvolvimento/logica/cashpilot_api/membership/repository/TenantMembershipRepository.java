@@ -1,7 +1,7 @@
 package com.desenvolvimento.logica.cashpilot_api.membership.repository;
 
-import com.desenvolvimento.logica.cashpilot_api.membership.entity.MembershipStatus;
-import com.desenvolvimento.logica.cashpilot_api.membership.entity.TenantMembership;
+import com.desenvolvimento.logica.cashpilot_api.membership.model.MembershipStatus;
+import com.desenvolvimento.logica.cashpilot_api.membership.model.TenantMembership;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

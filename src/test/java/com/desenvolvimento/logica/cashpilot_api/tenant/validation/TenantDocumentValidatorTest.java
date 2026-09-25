@@ -2,7 +2,7 @@ package com.desenvolvimento.logica.cashpilot_api.tenant.validation;
 
 
 import com.desenvolvimento.logica.cashpilot_api.tenant.dto.UpdateTenantProfileRequest;
-import com.desenvolvimento.logica.cashpilot_api.tenant.entity.DocumentType;
+import com.desenvolvimento.logica.cashpilot_api.tenant.model.DocumentType;
 import jakarta.validation.Validator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

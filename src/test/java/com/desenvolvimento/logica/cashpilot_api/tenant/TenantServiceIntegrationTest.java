@@ -1,7 +1,7 @@
 package com.desenvolvimento.logica.cashpilot_api.tenant;
 
-import com.desenvolvimento.logica.cashpilot_api.tenant.entity.Tenant;
-import com.desenvolvimento.logica.cashpilot_api.tenant.entity.TenantStatus;
+import com.desenvolvimento.logica.cashpilot_api.tenant.model.Tenant;
+import com.desenvolvimento.logica.cashpilot_api.tenant.model.TenantStatus;
 import com.desenvolvimento.logica.cashpilot_api.tenant.repository.TenantRepository;
 import com.desenvolvimento.logica.cashpilot_api.tenant.service.TenantService;
 import jakarta.persistence.EntityManager;

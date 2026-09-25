@@ -1,6 +1,6 @@
 package com.desenvolvimento.logica.cashpilot_api.verification.service;
 
-import com.desenvolvimento.logica.cashpilot_api.user.entity.UserStatus;
+import com.desenvolvimento.logica.cashpilot_api.user.model.UserStatus;
 import com.desenvolvimento.logica.cashpilot_api.user.repository.UserRepository;
 import com.desenvolvimento.logica.cashpilot_api.verification.dto.ResendVerificationRequest;
 import com.desenvolvimento.logica.cashpilot_api.verification.event.EmailVerificationRequestedEvent;

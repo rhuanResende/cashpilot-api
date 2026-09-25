@@ -1,6 +1,6 @@
 package com.desenvolvimento.logica.cashpilot_api.user.repository;
 
-import com.desenvolvimento.logica.cashpilot_api.user.entity.User;
+import com.desenvolvimento.logica.cashpilot_api.user.model.User;
 import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;

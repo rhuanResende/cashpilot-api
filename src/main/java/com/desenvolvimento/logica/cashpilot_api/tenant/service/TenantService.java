@@ -1,6 +1,6 @@
 package com.desenvolvimento.logica.cashpilot_api.tenant.service;
 
-import com.desenvolvimento.logica.cashpilot_api.tenant.entity.Tenant;
+import com.desenvolvimento.logica.cashpilot_api.tenant.model.Tenant;
 import com.desenvolvimento.logica.cashpilot_api.tenant.repository.TenantRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

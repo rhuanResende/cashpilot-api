@@ -3,7 +3,7 @@ package com.desenvolvimento.logica.cashpilot_api.user.service;
 import com.desenvolvimento.logica.cashpilot_api.shared.exception.UserNotFoundException;
 import com.desenvolvimento.logica.cashpilot_api.shared.mapper.AddressMapper;
 import com.desenvolvimento.logica.cashpilot_api.user.dto.UpdateUserProfileRequest;
-import com.desenvolvimento.logica.cashpilot_api.user.entity.User;
+import com.desenvolvimento.logica.cashpilot_api.user.model.User;
 import com.desenvolvimento.logica.cashpilot_api.user.repository.UserRepository;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;

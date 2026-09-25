@@ -1,4 +1,4 @@
-package com.desenvolvimento.logica.cashpilot_api.user.entity;
+package com.desenvolvimento.logica.cashpilot_api.user.model;
 
 import com.desenvolvimento.logica.cashpilot_api.shared.model.Address;
 import com.desenvolvimento.logica.cashpilot_api.shared.model.BaseEntity;
@@ -39,6 +39,9 @@ public class User extends BaseEntity {
 
     @Embedded
     private Address address;
+
+    @Column(name = "last_login_at")
+    private Instant lastLoginAt;
 
     protected User() {
     }
@@ -144,5 +147,9 @@ public class User extends BaseEntity {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Instant getLastLoginAt() {
+        return lastLoginAt;
     }
 }

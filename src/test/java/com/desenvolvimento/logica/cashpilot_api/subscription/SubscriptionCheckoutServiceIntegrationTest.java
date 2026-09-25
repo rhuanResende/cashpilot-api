@@ -1,16 +1,16 @@
 package com.desenvolvimento.logica.cashpilot_api.subscription;
 
-import com.desenvolvimento.logica.cashpilot_api.membership.entity.MembershipRole;
-import com.desenvolvimento.logica.cashpilot_api.membership.entity.TenantMembership;
+import com.desenvolvimento.logica.cashpilot_api.membership.model.MembershipRole;
+import com.desenvolvimento.logica.cashpilot_api.membership.model.TenantMembership;
 import com.desenvolvimento.logica.cashpilot_api.membership.repository.TenantMembershipRepository;
 import com.desenvolvimento.logica.cashpilot_api.plan.repository.PlanRepository;
 import com.desenvolvimento.logica.cashpilot_api.shared.exception.ForbiddenOperationException;
 import com.desenvolvimento.logica.cashpilot_api.subscription.model.Subscription;
 import com.desenvolvimento.logica.cashpilot_api.subscription.repository.SubscriptionRepository;
 import com.desenvolvimento.logica.cashpilot_api.subscription.service.SubscriptionCheckoutService;
-import com.desenvolvimento.logica.cashpilot_api.tenant.entity.Tenant;
+import com.desenvolvimento.logica.cashpilot_api.tenant.model.Tenant;
 import com.desenvolvimento.logica.cashpilot_api.tenant.repository.TenantRepository;
-import com.desenvolvimento.logica.cashpilot_api.user.entity.User;
+import com.desenvolvimento.logica.cashpilot_api.user.model.User;
 import com.desenvolvimento.logica.cashpilot_api.user.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;

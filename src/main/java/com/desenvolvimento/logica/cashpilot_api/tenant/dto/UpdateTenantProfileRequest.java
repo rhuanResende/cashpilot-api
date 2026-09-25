@@ -1,7 +1,7 @@
 package com.desenvolvimento.logica.cashpilot_api.tenant.dto;
 
 import com.desenvolvimento.logica.cashpilot_api.shared.dto.AddressRequest;
-import com.desenvolvimento.logica.cashpilot_api.tenant.entity.DocumentType;
+import com.desenvolvimento.logica.cashpilot_api.tenant.model.DocumentType;
 import com.desenvolvimento.logica.cashpilot_api.tenant.validation.ValidTenantDocument;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;

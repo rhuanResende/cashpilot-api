@@ -109,6 +109,11 @@ class RegistrationEmailCommitIntegrationTest {
                 );
 
                 jdbcTemplate.update(
+                        "DELETE FROM user_auth_security WHERE user_id = ?",
+                        response.userId()
+                );
+
+                jdbcTemplate.update(
                         "DELETE FROM users WHERE id = ?",
                         response.userId()
                 );

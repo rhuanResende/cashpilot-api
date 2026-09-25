@@ -22,3 +22,15 @@ spring:
 
 server:
   port: ${SERVER_PORT:8080}
+
+app:
+  security:
+    authentication:
+      password:
+        max-failed-attempts: 5
+        failure-window: 15m
+        lock-duration: 15m
+      mfa:
+        max-failed-attempts: 5
+        failure-window: 15m
+        lock-duration: 15m

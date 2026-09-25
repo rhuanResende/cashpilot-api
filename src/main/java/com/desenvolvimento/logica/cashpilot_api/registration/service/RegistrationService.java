@@ -1,7 +1,9 @@
 package com.desenvolvimento.logica.cashpilot_api.registration.service;
 
-import com.desenvolvimento.logica.cashpilot_api.membership.entity.MembershipRole;
-import com.desenvolvimento.logica.cashpilot_api.membership.entity.TenantMembership;
+import com.desenvolvimento.logica.cashpilot_api.auth.model.UserAuthSecurity;
+import com.desenvolvimento.logica.cashpilot_api.auth.repository.UserAuthSecurityRepository;
+import com.desenvolvimento.logica.cashpilot_api.membership.model.MembershipRole;
+import com.desenvolvimento.logica.cashpilot_api.membership.model.TenantMembership;
 import com.desenvolvimento.logica.cashpilot_api.membership.repository.TenantMembershipRepository;
 import com.desenvolvimento.logica.cashpilot_api.plan.model.Plan;
 import com.desenvolvimento.logica.cashpilot_api.plan.repository.PlanRepository;
@@ -10,9 +12,9 @@ import com.desenvolvimento.logica.cashpilot_api.registration.dto.RegisterRespons
 import com.desenvolvimento.logica.cashpilot_api.shared.exception.EmailAlreadyRegisteredException;
 import com.desenvolvimento.logica.cashpilot_api.subscription.model.Subscription;
 import com.desenvolvimento.logica.cashpilot_api.subscription.repository.SubscriptionRepository;
-import com.desenvolvimento.logica.cashpilot_api.tenant.entity.Tenant;
+import com.desenvolvimento.logica.cashpilot_api.tenant.model.Tenant;
 import com.desenvolvimento.logica.cashpilot_api.tenant.repository.TenantRepository;
-import com.desenvolvimento.logica.cashpilot_api.user.entity.User;
+import com.desenvolvimento.logica.cashpilot_api.user.model.User;
 import com.desenvolvimento.logica.cashpilot_api.user.repository.UserRepository;
 import com.desenvolvimento.logica.cashpilot_api.verification.dto.IssuedEmailVerification;
 import com.desenvolvimento.logica.cashpilot_api.verification.event.EmailVerificationRequestedEvent;
@@ -37,6 +39,7 @@ public class RegistrationService {
     private final TenantMembershipRepository membershipRepository;
     private final PlanRepository planRepository;
     private final SubscriptionRepository subscriptionRepository;
+    private final UserAuthSecurityRepository authSecurityRepository;
     private final Clock clock;
     private final PasswordEncoder passwordEncoder;
     private final EmailVerificationService emailVerificationService;
@@ -48,6 +51,7 @@ public class RegistrationService {
             TenantMembershipRepository membershipRepository,
             PlanRepository planRepository,
             SubscriptionRepository subscriptionRepository,
+            UserAuthSecurityRepository authSecurityRepository,
             Clock clock,
             PasswordEncoder passwordEncoder,
             EmailVerificationService emailVerificationService,
@@ -58,6 +62,7 @@ public class RegistrationService {
         this.membershipRepository = membershipRepository;
         this.planRepository = planRepository;
         this.subscriptionRepository = subscriptionRepository;
+        this.authSecurityRepository = authSecurityRepository;
         this.clock = clock;
         this.passwordEncoder = passwordEncoder;
         this.emailVerificationService = emailVerificationService;
@@ -87,6 +92,8 @@ public class RegistrationService {
                         passwordHash
                 )
         );
+
+        authSecurityRepository.save(new UserAuthSecurity(user));
 
         Tenant tenant = tenantRepository.save(
                 new Tenant(request.organizationName())

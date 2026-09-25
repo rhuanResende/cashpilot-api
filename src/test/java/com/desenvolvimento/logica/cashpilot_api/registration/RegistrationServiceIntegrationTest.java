@@ -1,15 +1,16 @@
 package com.desenvolvimento.logica.cashpilot_api.registration;
 
-import com.desenvolvimento.logica.cashpilot_api.membership.entity.MembershipRole;
-import com.desenvolvimento.logica.cashpilot_api.membership.entity.MembershipStatus;
+import com.desenvolvimento.logica.cashpilot_api.auth.repository.UserAuthSecurityRepository;
+import com.desenvolvimento.logica.cashpilot_api.membership.model.MembershipRole;
+import com.desenvolvimento.logica.cashpilot_api.membership.model.MembershipStatus;
 import com.desenvolvimento.logica.cashpilot_api.membership.repository.TenantMembershipRepository;
 import com.desenvolvimento.logica.cashpilot_api.registration.dto.RegisterRequest;
 import com.desenvolvimento.logica.cashpilot_api.registration.service.RegistrationService;
 import com.desenvolvimento.logica.cashpilot_api.subscription.model.SubscriptionStatus;
 import com.desenvolvimento.logica.cashpilot_api.subscription.repository.SubscriptionRepository;
 import com.desenvolvimento.logica.cashpilot_api.tenant.repository.TenantRepository;
-import com.desenvolvimento.logica.cashpilot_api.user.entity.PlatformRole;
-import com.desenvolvimento.logica.cashpilot_api.user.entity.UserStatus;
+import com.desenvolvimento.logica.cashpilot_api.user.model.PlatformRole;
+import com.desenvolvimento.logica.cashpilot_api.user.model.UserStatus;
 import com.desenvolvimento.logica.cashpilot_api.user.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import org.assertj.core.api.Assertions;
@@ -49,6 +50,9 @@ public class RegistrationServiceIntegrationTest {
     private SubscriptionRepository subscriptionRepository;
 
     @Autowired
+    private UserAuthSecurityRepository authSecurityRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -70,6 +74,29 @@ public class RegistrationServiceIntegrationTest {
 
         entityManager.flush();
         entityManager.clear();
+
+        var security = authSecurityRepository.findById(response.userId())
+                .orElseThrow();
+
+        Assertions.assertThat(security.getUserId()).isEqualTo(response.userId());
+
+        Assertions.assertThat(security.getPasswordFailedAttempts()).isZero();
+        Assertions.assertThat(security.getPasswordFailureWindowStartedAt()).isNull();
+        Assertions.assertThat(security.getPasswordLockedUntil()).isNull();
+        Assertions.assertThat(security.getLastPasswordFailureAt()).isNull();
+
+        Assertions.assertThat(security.getMfaFailedAttempts()).isZero();
+        Assertions.assertThat(security.getMfaFailureWindowStartedAt()).isNull();
+        Assertions.assertThat(security.getMfaLockedUntil()).isNull();
+        Assertions.assertThat(security.getLastMfaFailureAt()).isNull();
+
+        Assertions.assertThat(security.getCreatedAt()).isNotNull();
+        Assertions.assertThat(security.getUpdatedAt()).isNotNull();
+
+        var savedUser = userRepository.findById(response.userId())
+                .orElseThrow();
+
+        Assertions.assertThat(savedUser.getLastLoginAt()).isNull();
 
         var user = userRepository.findById(response.userId())
                 .orElseThrow();
